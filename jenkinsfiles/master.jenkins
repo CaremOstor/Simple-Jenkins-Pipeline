@@ -16,15 +16,7 @@ pipeline {
     stage('Setup parameters') {
       steps {
         script {
-          properties([
-            parameters([
-              choice(
-                choices: ['DEBUG', 'PRODUCTION'],
-                name: 'BuildMode',
-                description: 'Build in debug or production mode?'
-              )
-            ])
-          ])
+          properties([parameters([choice(name: 'BuildMode', description: 'Build in debug or production mode?', choices: ['debug', 'prod'])])])
         }
       } 
     }
