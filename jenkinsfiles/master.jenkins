@@ -2,7 +2,6 @@
 properties([disableConcurrentBuilds()])
 
 parameters {
-  string(defaultValue: '/home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src', description: 'Path to source code folder', name: 'src')
   booleanParam(description: 'Build program in debug mode or no?', name: 'Build4Debug')
   booleanParam(description: 'Build program in prodaction mode or not?', name: 'Build4Prod')
 }
@@ -16,7 +15,7 @@ pipeline {
   stages {
     stage('Run Tests') {
       steps {
-        sh 'ssh phierus@phierus \'cd {$params.src}; pwd; make -f Makefile runtests\''
+        sh 'ssh phierus@phierus \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make -f Makefile runtests\''
       }
     }
     
@@ -27,7 +26,7 @@ pipeline {
         }
       }
       steps {
-        sh 'ssh phierus@phierus \'cd {$params.src}; make -f Makefile debug\''
+        sh 'ssh phierus@phierus \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make -f Makefile debug\''
       }
     }
     
@@ -38,7 +37,7 @@ pipeline {
 	}
       }
       steps {
-        sh 'ssh phierus@phierus \'cd {$params.src}; make -f Makefile prod\''
+        sh 'ssh phierus@phierus \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make -f Makefile prod\''
       }
     }
 
