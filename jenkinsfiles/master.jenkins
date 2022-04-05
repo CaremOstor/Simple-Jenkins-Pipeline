@@ -17,7 +17,7 @@ pipeline {
       steps {
         script {
           properties([parameters([  
-            booleanParam(description: 'Build program in debug mode or no?', name: 'Build4Debug')
+            booleanParam(description: 'Build program in debug mode or no?', name: 'Build4Debug'),
             booleanParam(description: 'Build program in prodaction mode or not?', name: 'Build4Prod')])])
         }
       } 
