@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage('Run Tests') {
       steps {
-        sh 'ssh phierus@phierus \'cd {$params.src}; make -f Makefile runtests\''
+        sh 'ssh phierus@phierus \'cd {$params.src}; pwd; make -f Makefile runtests\''
       }
     }
     
