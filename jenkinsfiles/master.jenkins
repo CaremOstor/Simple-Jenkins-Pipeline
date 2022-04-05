@@ -7,7 +7,7 @@ parameters {
 }
 
 pipeline {
-  agent none
+  agent any
   options {
   timestamps()
   }
