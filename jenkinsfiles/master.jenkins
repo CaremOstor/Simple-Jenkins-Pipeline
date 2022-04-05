@@ -18,27 +18,30 @@ pipeline {
   
   stages {
     stage('Run Tests') {
-    sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make runtests\''
+      sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make runtests\''
     }
     
     stage('Build Debug') {
       when {
-		    expression { 
-			  return params.Build4Debug
-		    }
+        expression { 
+	  return params.Build4Debug
+        }
       }
-      sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make debug\''
-      
+      steps {
+        sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make debug\''
+      }
     }
     
     stage('Build Prodaction'){
       when {
-		    expression { 
-			  return params.Build4Prod
-		    }
+	expression { 
+	  return params.Build4Prod
+	}
       }
-      sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make prod\''
+      steps {
+        sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make prod\''
+      }
     }
-    
+
   }
 }
