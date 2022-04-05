@@ -18,7 +18,9 @@ pipeline {
   
   stages {
     stage('Run Tests') {
-      sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make runtests\''
+      steps {
+        sh 'ssh phierus@192.168.122.1 \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make runtests\''
+      }
     }
     
     stage('Build Debug') {
