@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage('Run Tests') {
       steps {
-        sh 'ssh phierus@phierus \'cd params.src; make runtests\''
+        sh 'ssh phierus@phierus \'cd ${params.src}; make runtests\''
       }
     }
     
@@ -27,7 +27,7 @@ pipeline {
         }
       }
       steps {
-        sh 'ssh phierus@phierus \'cd params.src; make debug\''
+        sh 'ssh phierus@phierus \'cd ${params.src}; make debug\''
       }
     }
     
@@ -38,7 +38,7 @@ pipeline {
 	}
       }
       steps {
-        sh 'ssh phierus@phierus \'cd params.src; make prod\''
+        sh 'ssh phierus@phierus \'cd ${params.src}; make prod\''
       }
     }
 
