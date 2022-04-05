@@ -13,6 +13,21 @@ pipeline {
   }
   
   stages {
+    stage('Setup parameters') {
+      steps {
+        script {
+          properties([
+            parameters([
+              choise(
+                choises: ['DEBUG', 'PRODUCTION'],
+                name: 'BuildMode',
+                description: 'Build in debug or production mode?'
+              )
+            ])
+          ])
+        }
+      } 
+    }
     stage('Run Tests') {
       steps {
         sh 'ssh phierus@phierus \'cd /home/phierus/Data/Documents/ITHub/CICD/2nd_cp/src; make -f Makefile runtests\''
@@ -22,7 +37,7 @@ pipeline {
     stage('Build Debug') {
       when {
         expression { 
-	  return params.Build4Debug
+	  return params.BuildMode == 'DEBUG'
         }
       }
       steps {
@@ -33,7 +48,7 @@ pipeline {
     stage('Build Prodaction'){
       when {
 	expression { 
-	  return params.Build4Prod
+	  return params.BuildMode == 'PRODUCTION'
 	}
       }
       steps {
