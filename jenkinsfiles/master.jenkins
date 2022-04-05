@@ -31,7 +31,7 @@ pipeline {
     stage('Build Debug') {
       when {
         expression { 
-	  return params.BuildMode == 'DEBUG'
+	  return params.Build4Debug
         }
       }
       steps {
@@ -42,7 +42,7 @@ pipeline {
     stage('Build Prodaction'){
       when {
 	expression { 
-	  return params.BuildMode == 'PRODUCTION'
+	  return params.Build4Prod
 	}
       }
       steps {
