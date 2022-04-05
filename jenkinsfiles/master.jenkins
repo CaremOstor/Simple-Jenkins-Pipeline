@@ -19,7 +19,7 @@ pipeline {
           properties([
             parameters([
               choice(
-                choises: ['DEBUG', 'PRODUCTION'],
+                choices: ['DEBUG', 'PRODUCTION'],
                 name: 'BuildMode',
                 description: 'Build in debug or production mode?'
               )
